@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\SocialController; 
+use App\Http\Controllers\{SocialController, TransactionController}; 
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +63,10 @@ Route::get('/sign-in', [LoginController::class, 'create'])
     ->middleware('guest')
     ->name('sign-in');
 
+Route::get('/otp', function () {
+    return view('auth.otp'); 
+}); 
+
 Route::post('/sign-in', [LoginController::class, 'store'])
     ->middleware('guest');
 
@@ -93,3 +97,11 @@ Route::get('/laravel-examples/users-management', [UserController::class, 'index'
 Route::prefix('socials')->group(function () {
     Route::get('/', [SocialController::class, 'index'])->name('socials'); 
 })->middleware('auth'); 
+
+Route::middleware(['auth'])->prefix('transactions')->group(function () {
+    Route::get('/', [TransactionController::class, 'index'])->name('transactions');
+    Route::get('/create', [TransactionController::class, 'create'])->name('transactions.create');  
+    Route::post('/store', [TransactionController::class, 'store'])->name('transactions.store'); 
+}); 
+
+Route::get('/deposit', [TransactionController::class, 'deposit'])->middleware('auth')->name('deposit'); 
