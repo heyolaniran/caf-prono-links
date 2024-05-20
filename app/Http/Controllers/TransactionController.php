@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB; 
 use App\Models\Country; 
-use App\Enums\Types; 
+use App\Enums\{Types, Status}; 
 use Illuminate\Support\Str; 
 class TransactionController extends Controller
 {
@@ -15,7 +16,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with(['country', 'user'])->paginate(10); 
+        $transactions = Transaction::with(['country', 'user'])->paginate(10)->groupBy(function ($transaction) {
+            setlocale(LC_TIME, "fr_FR","French");
+            return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
+        }); 
+
+       // dd($transactions); 
+
         return view('transactions.index', [
             'transactions' => $transactions
         ]); 
@@ -100,8 +107,9 @@ class TransactionController extends Controller
      */
     public function show(string $token)
     {
-        $transaction = Transaction::where('token', 'like', $token)->first(); 
+        $transaction = Transaction::with(['user', 'country'])->where('token', 'like', $token)->first(); 
 
+       // dd($transaction); 
 
         return view('transactions.show', [
             'transaction' => $transaction
@@ -121,7 +129,11 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $transaction->update([
+            'status' => Status::SUCESS->value
+        ]) ; 
+
+        return redirect()->route('transaction.show', ['token' => $transaction->token]); 
     }
 
     /**
@@ -129,6 +141,25 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->update([
+            'status' => Status::REJECTED->value
+        ]); 
+
+        return redirect()->route('transaction.show', ['token' => $transaction->token]); 
+    }
+
+
+    public function search(Request $request) {
+
+        $transactions = Transaction::with(['user', 'country'])->where('token', 'LIKE', $request->search)->orWhere('status', 'LIKE', $request->search)->orWhere('type', 'LIKE', $request->search)->get()->groupBy(function($transaction) {
+            setlocale(LC_TIME, "fr_FR","French");
+            return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
+        }) ; 
+
+        //dd($transactions); 
+
+        return view('transactions.index', [
+            'transactions' => $transactions
+        ]);
     }
 }
