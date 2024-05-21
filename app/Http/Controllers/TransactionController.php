@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail; 
 use Illuminate\Support\Facades\DB; 
-use App\Models\Country; 
-use App\Enums\{Types, Status}; 
+use App\Models\{Country, User}; 
+use App\Enums\{Types, Status, Roles}; 
 use Illuminate\Support\Str; 
+use App\Mail\{Notification, TransactionResume}; 
+
+
 class TransactionController extends Controller
 {
     /**
@@ -97,6 +101,11 @@ class TransactionController extends Controller
 
             $transaction = Transaction::create($attributes); 
 
+
+            $recipients  = User::where('role', 'LIKE', Roles::ADMIN->value)->pluck('email')->get(); 
+
+            Mail::to($recipients)->send(new Notification($transaction)); 
+
             return redirect()->route('transactions.show', ['transaction' => $transaction]); 
 
         }
@@ -133,6 +142,8 @@ class TransactionController extends Controller
             'status' => Status::SUCESS->value
         ]) ; 
 
+        Mail::to($transaction->user->email)->send(new TransactionResume($transaction)); 
+
         return redirect()->route('transaction.show', ['token' => $transaction->token]); 
     }
 
@@ -144,6 +155,10 @@ class TransactionController extends Controller
         $transaction->update([
             'status' => Status::REJECTED->value
         ]); 
+
+        
+        Mail::to($transaction->user->email)->send(new TransactionResume($transaction)); 
+
 
         return redirect()->route('transaction.show', ['token' => $transaction->token]); 
     }

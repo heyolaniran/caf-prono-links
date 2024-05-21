@@ -116,7 +116,7 @@
                                             <p class="text-sm text-dark font-weight-semibold mb-0">N° de Téléphone</p>
                                             
                                         </td>
-                                        <td class=" d-flex  align-middle text-center text-sm pt-2">
+                                        <td class=" align-middle text-center  text-sm">
                                            {{ $transaction->country->indicator . " ". $transaction->number }}
                                             <input type="hidden" name="number" id="number" value="{{$transaction->number}}">
                                             <button onclick="myFunction('number')" class="btn px-1 py-1"> <i class="fa fa-clipboard text-sm" aria-hidden="true"></i> </button>
