@@ -138,6 +138,8 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
+        Auth::user()->can('update', $transaction); 
+        
         $transaction->update([
             'status' => Status::SUCESS->value
         ]) ; 
@@ -152,6 +154,9 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
+
+        Auth::user()->can('update', $transaction); 
+
         $transaction->update([
             'status' => Status::REJECTED->value
         ]); 

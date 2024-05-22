@@ -155,30 +155,32 @@
                     </div>
 
                     
+                    @can('update', $transaction)
+                        <div class="d-flex mt-4 justify-content-between">
+                            <div>
+                                <form action="{{route('transaction.update', ['transaction' => $transaction])}}" method="post">
+                                    @csrf
+                                    @method('PUT')
 
-                    <div class="d-flex mt-4 justify-content-between">
-                        <div>
-                            <form action="{{route('transaction.update', ['transaction' => $transaction])}}" method="post">
-                                @csrf
-                                @method('PUT')
+                                    <button type="submit" class="btn btn-success" > Confirmer </button>
+                                </form>
 
-                                <button type="submit" class="btn btn-success" > Confirmer </button>
-                            </form>
+                            </div>
+
+                            <div>
+                                
+                                <form action="{{route('transaction.delete', ['transaction' => $transaction])}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger" > Rejeter  </button>
+                                </form>
+                            </div>
+
 
                         </div>
-
-                        <div>
-                            
-                            <form action="{{route('transaction.delete', ['transaction' => $transaction])}}" method="post">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger" > Rejeter  </button>
-                            </form>
-                        </div>
-
-
-                    </div>
+                    @endcan
+                   
                 </div>
             </div>
         </div>
