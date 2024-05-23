@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <main class="main-content position-relative max-height-vh-100 min-h-screen h-100 border-radius-lg ">
         <x-app.navbar />
         
             <div class="row">
@@ -21,11 +21,7 @@
                                                     </p>
                                                     <h5 class="text-dark font-weight-bolder">Secured</h5>
                                                 </div>
-                                                <div class="col-sm-3 ms-auto mt-auto">
-                                                    <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">
-                                                        Category</p>
-                                                    <h5 class="text-dark font-weight-bolder">Banking</h5>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -43,11 +39,7 @@
                                                 <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
                                                 <h5 class="text-dark font-weight-bolder">Cyber</h5>
                                             </div>
-                                            <div class="col-sm-3 ms-auto mt-auto">
-                                                <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category
-                                                </p>
-                                                <h5 class="text-dark font-weight-bolder">Security</h5>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -64,11 +56,7 @@
                                                 <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
                                                 <h5 class="text-dark font-weight-bolder">Alpha</h5>
                                             </div>
-                                            <div class="col-sm-3 ms-auto mt-auto">
-                                                <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category
-                                                </p>
-                                                <h5 class="text-dark font-weight-bolder">Blockchain</h5>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -85,11 +73,7 @@
                                                 <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
                                                 <h5 class="text-dark font-weight-bolder">Beta</h5>
                                             </div>
-                                            <div class="col-sm-3 ms-auto mt-auto">
-                                                <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category
-                                                </p>
-                                                <h5 class="text-dark font-weight-bolder">Web3</h5>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -106,11 +90,7 @@
                                                 <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
                                                 <h5 class="text-dark font-weight-bolder">Gama</h5>
                                             </div>
-                                            <div class="col-sm-3 ms-auto mt-auto">
-                                                <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category
-                                                </p>
-                                                <h5 class="text-dark font-weight-bolder">Design</h5>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -127,11 +107,7 @@
                                                 <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
                                                 <h5 class="text-dark font-weight-bolder">Rompro</h5>
                                             </div>
-                                            <div class="col-sm-3 ms-auto mt-auto">
-                                                <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category
-                                                </p>
-                                                <h5 class="text-dark font-weight-bolder">Security</h5>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -141,19 +117,21 @@
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
                 </div>
-            </div>
-            <div class="mt-4">
-                <div class=" row d-flex justify-content-center align-middle text-center">
-                    <div class="col-md-6">
-                        <a href="{{route('deposit')}}" class="btn btn-info rounded-pill text-sm"> <i class="fab fa-dollar-sign text-sm text-white"></i> Effectuer un dépôt </a>
+                <div class="mt-4">
+                    <div class=" row d-flex justify-content-center align-middle text-center">
+                        <div class="col-md-6">
+                            <a href="{{route('deposit')}}" class="btn btn-info rounded-pill text-sm"> <i class="fab fa-dollar-sign text-sm text-white"></i> Effectuer un dépôt </a>
+                        </div>
+                    </div>
+                    <div class=" row d-flex justify-content-center align-middle text-center">
+                        <div class="col-md-6">
+                            <a href="{{route('transactions.create')}}" class="btn text-info rounded-pill text-sm btn-outline-info"> <i class="fab fa-dollar-sign text-sm text-info"></i> Effectuer un retrait </a>
+                        </div>
                     </div>
                 </div>
-                <div class=" row d-flex justify-content-center align-middle text-center">
-                    <div class="col-md-6">
-                        <a href="{{route('deposit')}}" class="btn text-info rounded-pill text-sm btn-outline-info"> <i class="fab fa-dollar-sign text-sm text-info"></i> Effectuer un retrait </a>
-                    </div>
-                </div>
             </div>
+            
+            
             @if(Auth::user()->isAdmin())
                 <div class="row my-4">
                     <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
@@ -590,6 +568,7 @@
                     </div>
                 </div>
             @endif
+            
             <x-app.footer />
         </div>
     </main>
