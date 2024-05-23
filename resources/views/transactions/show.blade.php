@@ -3,7 +3,7 @@
         <x-app.navbar />
 
         <div class="container ">
-            <div class="justify-content-start mb-4  ">
+            <div class="justify-content-start mb-4 d-md-none ">
                 <a href="{{route('dashboard')}}"> <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
 
