@@ -5,11 +5,10 @@
             style="background-image: url(''); background-position: bottom;">
         </div>
         <x-app.navbar />
-        <div class="px-5 py-4 container-fluid ">
 
-            <div class="my-4 d-md-none">
-                <a href="{{route('dashboard')}}"> <i class="fa fa-arrow-left fa-2x text-lg " aria-hidden="true"></i> </a>
-            </div>
+        
+
+        <div class="px-5 py-4 container-fluid ">
             <form action={{ route('users.update') }} method="POST">
                 @csrf
                 @method('PUT')
@@ -113,6 +112,5 @@
        
     </main>
 
-    <x-app.footer />
 
 </x-app-layout>

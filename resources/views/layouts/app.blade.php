@@ -74,7 +74,7 @@
     @endphp
     @if (in_array(request()->route()->getName(),
             $topSidenavArray))
-        <x-sidenav-top />
+        <x-app.sidebar />
     @elseif(in_array(request()->route()->getName(),
             $topSidenavTransparent))
 
@@ -175,6 +175,10 @@
     <script>
         if (document.getElementsByClassName('mySwiper')) {
             var swiper = new Swiper(".mySwiper", {
+                autoplay: {
+                    delay: 5000
+                }, 
+                reverseDirection : true, 
                 effect: "cards",
                 grabCursor: true,
                 initialSlide: 1,
@@ -182,6 +186,7 @@
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
+               
             });
         };
 

@@ -26,11 +26,11 @@ class TransactionController extends Controller
                 setlocale(LC_TIME, "fr_FR","French");
                 return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
             }); 
-        }
-        $transactions = Transaction::with(['country', 'user'])->where('user_id' , Auth::user()->id)->get()->groupBy(function ($transaction) {
-            setlocale(LC_TIME, "fr_FR","French");
-            return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
-        }); 
+        }else 
+            $transactions = Transaction::with(['country', 'user'])->where('user_id' , Auth::user()->id)->get()->groupBy(function ($transaction) {
+                setlocale(LC_TIME, "fr_FR","French");
+                return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
+            }); 
 
        
 
