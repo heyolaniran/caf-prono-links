@@ -19,7 +19,7 @@
                                 <div class="card-body text-center">
                                     @if ($errors->any())
                                         <div>
-                                            <div>Something went wrong!</div>
+                                            <div>Quelque chose s'est mal passé !</div>
 
                                             <ul>
                                                 @foreach ($errors->all() as $error)
@@ -43,17 +43,17 @@
                                         </div>
                                         <div class="mb-3">
                                             <input type="password" id="password" class="form-control" name="password"
-                                                placeholder="Enter your password" aria-label="Password" id="password"
+                                                placeholder="Nouveau Mot de passe " aria-label="Password" id="password"
                                                 name="password"required>
                                         </div>
                                         <div class="mb-3">
                                             <input type="password" id="password_confirmation" class="form-control"
-                                                name="password_confirmation" placeholder="Confirm your password"
+                                                name="password_confirmation" placeholder="Confirmez le mot de passe "
                                                 aria-label="Password" id="password_confirmation"
                                                 name="password_confirmation" required>
                                             <div class="text-center">
                                                 <button type="submit"
-                                                    class="my-4 mb-2 btn btn-dark btn-lg w-100">Send</button>
+                                                    class="my-4 mb-2 btn btn-info rounded-pill btn-lg w-100">Enregistrer <i class="fa fa-arrow-right text-sm" aria-hidden="true"></i></button>
                                             </div>
                                     </form>
                                 </div>
@@ -66,10 +66,8 @@
                                 style="background-image:url('../assets/img/image-sign-in.jpg')">
                                 <div
                                     class="blur mt-12 p-4 text-center border border-white border-radius-md position-absolute fixed-bottom m-4">
-                                    <h2 class="mt-3 text-dark font-weight-bold">Enter our global community of
-                                        developers.</h2>
-                                    <h6 class="text-dark text-sm mt-5">Copyright © 2022 Corporate UI Design System
-                                        by Creative Tim.</h6>
+                                    <h2 class="mt-3 text-dark font-weight-bold">Plus qu'une étape pour renouer avec votre communauté</h2>
+                                    <h6 class="text-dark text-sm mt-5">Copyright © 2024 CASH-XBET by <a href="https://x.com/heyolaniran">by @heyolaniran</a> </h6>
                                 </div>
                             </div>
                         </div>

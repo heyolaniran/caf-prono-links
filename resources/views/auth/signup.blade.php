@@ -17,9 +17,8 @@
                                 <div class="oblique-image position-absolute d-flex fixed-top ms-auto h-100 z-index-0 bg-cover me-n8"
                                     style="background-image:url('../assets/img/image-sign-up.jpg')">
                                     <div class="my-auto text-start max-width-350 ms-7">
-                                        <h1 class="mt-3 text-white font-weight-bolder">Start your <br> new journey.</h1>
-                                        <p class="text-white text-lg mt-4 mb-4">Use these awesome forms to login or
-                                            create new account in your project for free.</p>
+                                        <h1 class="mt-3 text-white font-weight-bolder">Commencez <br> une nouvelle avanture.</h1>
+                                        <p class="text-white text-lg mt-4 mb-4">Rejoignez une communauté de plus de 100K membres</p>
                                         <div class="d-flex align-items-center">
                                             <div class="avatar-group d-flex">
                                                 <a href="javascript:;" class="avatar avatar-sm rounded-circle"
@@ -43,13 +42,12 @@
                                                         class="rounded-circle">
                                                 </a>
                                             </div>
-                                            <p class="font-weight-bold text-white text-sm mb-0 ms-2">Join 2.5M+ users
+                                            <p class="font-weight-bold text-white text-sm mb-0 ms-2">100k+ membres
                                             </p>
                                         </div>
                                     </div>
                                     <div class="text-start position-absolute fixed-bottom ms-7">
-                                        <h6 class="text-white text-sm mb-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+                                        <h6 class="text-white text-sm mb-5">Copyright © 2024 CASH-XBET by <a href="https://x.com/heyolaniran" target="_blank">@heyolaniran</a> </h6>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +108,7 @@
                                         <label>Compte 1XBET</label>
                                         <div class="mb-3">
                                             <input type="text" id="bet_acccount" name="bet_account" class="form-control"
-                                                placeholder="Adresse email" value="{{old("bet_account")}}" aria-label="Compte 1xBET"
+                                                placeholder="ID 1XBET" value="{{old("bet_account")}}" aria-label="Compte 1xBET"
                                                 aria-describedby="email-addon">
                                             @error('bet_account')
                                                 <span class="text-danger text-sm">{{ $message }}</span>
@@ -141,8 +139,8 @@
                                             <input class="form-check-input" type="checkbox" name="terms"
                                                 id="terms" required>
                                             <label class="font-weight-normal text-dark mb-0" for="terms">
-                                                J'accepte les <a href="javascript:;"
-                                                    class="text-dark font-weight-bold">politiques de confidentialités</a>.
+                                                Je reconnais <a href="javascript:;"
+                                                    class="text-dark font-weight-bold">avoir plus de 18 ans</a>.
                                             </label>
                                             @error('terms')
                                                 <span class="text-danger text-sm">{{ $message }}</span>

@@ -20,12 +20,19 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with(['country', 'user'])->paginate(10)->groupBy(function ($transaction) {
+        if(Auth::user()->isAdmin()) 
+        {
+            $transactions = Transaction::with(['country', 'user'])->get()->groupBy(function ($transaction) {
+                setlocale(LC_TIME, "fr_FR","French");
+                return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
+            }); 
+        }
+        $transactions = Transaction::with(['country', 'user'])->where('user_id' , Auth::user()->id)->get()->groupBy(function ($transaction) {
             setlocale(LC_TIME, "fr_FR","French");
             return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
         }); 
 
-       // dd($transactions); 
+       
 
         return view('transactions.index', [
             'transactions' => $transactions
