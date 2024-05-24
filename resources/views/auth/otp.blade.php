@@ -10,7 +10,7 @@
 
     <main class="main-content mt-0">
         <section>
-            <div class="page-header min-vh-100">
+            <div class="page-header min-vh-100 min-h-screen">
                 <div class="flex place-items-center">
                     <div class="max-w-md mx-auto text-center bg-white px-4 px-md-8 py-md-10 rounded-xl shadow">
                         <header class="mb-8">
