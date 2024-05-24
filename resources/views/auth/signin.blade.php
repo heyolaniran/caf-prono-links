@@ -14,7 +14,7 @@
                         <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-left bg-transparent text-center">
-                                    <h3 class="font-weight-black text-dark display-6">Bon Retour</h3>
+                                    <h3 class="font-weight-black text-dark display-6">Bon Retour 👋🏽</h3>
                                     <p class="mb-0"></p>
                                 </div>
                                 <div class="text-center">
@@ -83,10 +83,8 @@
                                     style="background-image:url('../assets/img/image-sign-in.jpg')">
                                     <div
                                         class="blur mt-12 p-4 text-center border border-white border-radius-md position-absolute fixed-bottom m-4">
-                                        <h2 class="mt-3 text-dark font-weight-bold">Enter our global community of
-                                            developers.</h2>
-                                        <h6 class="text-dark text-sm mt-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+                                        <h2 class="mt-3 text-dark font-weight-bold">Le meilleur Bookmaker avec des transactions fiables</h2>
+                                        <h6 class="text-dark text-sm mt-5">Copyright © 2024 CASH-XBET by <a href="https://x.com/heyolaniran" target="_blank">@heyolaniran</a> </h6>
                                     </div>
                                 </div>
                             </div>

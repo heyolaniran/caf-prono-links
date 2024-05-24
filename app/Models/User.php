@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\{Link, Country}; 
+use App\Enums\Roles; 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -50,5 +51,10 @@ class User extends Authenticatable
 
     public function transactions() {
         return $this->hasMany(Transactions::class, 'user_id', 'id');
+    }
+
+
+    public function isAdmin() {
+        return $this->role == Roles::ADMIN->value; 
     }
 }

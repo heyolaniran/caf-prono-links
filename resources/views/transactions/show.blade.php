@@ -3,7 +3,7 @@
         <x-app.navbar />
 
         <div class="container ">
-            <div class="justify-content-start mb-4  ">
+            <div class="justify-content-start mb-4 d-md-none ">
                 <a href="{{route('dashboard')}}"> <i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
 
@@ -116,7 +116,7 @@
                                             <p class="text-sm text-dark font-weight-semibold mb-0">N° de Téléphone</p>
                                             
                                         </td>
-                                        <td class=" d-flex  align-middle text-center text-sm pt-2">
+                                        <td class=" align-middle text-center  text-sm">
                                            {{ $transaction->country->indicator . " ". $transaction->number }}
                                             <input type="hidden" name="number" id="number" value="{{$transaction->number}}">
                                             <button onclick="myFunction('number')" class="btn px-1 py-1"> <i class="fa fa-clipboard text-sm" aria-hidden="true"></i> </button>
@@ -155,30 +155,32 @@
                     </div>
 
                     
+                    @can('update', $transaction)
+                        <div class="d-flex mt-4 justify-content-between">
+                            <div>
+                                <form action="{{route('transaction.update', ['transaction' => $transaction])}}" method="post">
+                                    @csrf
+                                    @method('PUT')
 
-                    <div class="d-flex mt-4 justify-content-between">
-                        <div>
-                            <form action="{{route('transaction.update', ['transaction' => $transaction])}}" method="post">
-                                @csrf
-                                @method('PUT')
+                                    <button type="submit" class="btn btn-success" > Confirmer </button>
+                                </form>
 
-                                <button type="submit" class="btn btn-success" > Confirmer </button>
-                            </form>
+                            </div>
+
+                            <div>
+                                
+                                <form action="{{route('transaction.delete', ['transaction' => $transaction])}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger" > Rejeter  </button>
+                                </form>
+                            </div>
+
 
                         </div>
-
-                        <div>
-                            
-                            <form action="{{route('transaction.delete', ['transaction' => $transaction])}}" method="post">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn btn-danger" > Rejeter  </button>
-                            </form>
-                        </div>
-
-
-                    </div>
+                    @endcan
+                   
                 </div>
             </div>
         </div>

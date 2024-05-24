@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('account_name'); 
             $table->foreignId('country_id')->constrained(); 
             $table->string('status')->default(Status::INIT->value); 
+            $table->foreignId('user_id')->constrained(); 
             $table->timestamps();
         });
     }

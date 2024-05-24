@@ -11,11 +11,12 @@
             <div class="page-header min-vh-100">
                 <div class="container">
                     <div class="row">
+                        
                         <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
-                            <div class="card card-plain mt-8">
+                            <div class="card card-plain shadow-lg mt-8">
                                 <div class="card-header pb-0 text-left bg-transparent">
-                                    <h3 class="font-weight-black text-dark display-6 text-center">Forgot password?</h3>
-                                    <p class="mb-0 text-center">Enter your email below!</p>
+                                    <h3 class="font-weight-black text-dark display-6 text-center">Mot de passe oublié?</h3>
+                                    <p class="mb-0 text-center text-sm"> Veuillez saisir votre adresse electronique pour réinitiaser votre mot de passe </p>
                                 </div>
                                 @if ($errors->any())
                                     <div class="alert alert-danger text-sm" role="alert">
@@ -37,14 +38,14 @@
                                 <div class="card-body">
                                     <form role="form" action="/forgot-password" method="POST">
                                         {{ csrf_field() }}
+                                    
                                         <div class="mb-3">
                                             <input type="email" class="form-control" placeholder="Email"
                                                 aria-label="Email" id="email" name="email"
                                                 value="{{ old('email') }}" required autofocus>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="my-4 mb-2 btn btn-dark btn-lg w-100">Email
-                                                password reset link</button>
+                                            <button type="submit" class="my-4 mb-2 btn btn-info rounded-pill btn-lg w-100">Récuperer mon compte <i class="fa fa-arrow-right text-sm" aria-hidden="true"></i></button>
                                         </div>
                                     </form>
                                 </div>

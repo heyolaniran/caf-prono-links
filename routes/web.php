@@ -42,7 +42,7 @@ Route::get('/RTL', function () {
 
 Route::get('/profile', function () {
     return view('account-pages.profile');
-})->name('profile')->middleware('auth');
+})->name('users')->middleware('auth');
 
 Route::get('/signin', function () {
     return view('account-pages.signin');
@@ -89,10 +89,12 @@ Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create']
 Route::post('/reset-password', [ResetPasswordController::class, 'store'])
     ->middleware('guest');
 
-Route::get('/laravel-examples/user-profile', [ProfileController::class, 'index'])->name('users.profile')->middleware('auth');
-Route::put('/laravel-examples/user-profile/update', [ProfileController::class, 'update'])->name('users.update')->middleware('auth');
-Route::get('/laravel-examples/users-management', [UserController::class, 'index'])->name('users-management')->middleware('auth');
+Route::get('/account', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::put('/account/update', [ProfileController::class, 'update'])->name('users.update')->middleware('auth');
+Route::get('/users-management', [UserController::class, 'index'])->name('users-management')->middleware(['auth']);
 
+Route::put('/users-nominate/{user}', [UserController::class, 'nominate'])->name('user.nominate')->middleware(['auth', 'admin']); 
+Route::put('/users-denominate/{user}', [UserController::class, 'denominate'])->name('user.denominate')->middleware(['auth', 'admin']); 
 
 Route::prefix('socials')->group(function () {
     Route::get('/', [SocialController::class, 'index'])->name('socials'); 

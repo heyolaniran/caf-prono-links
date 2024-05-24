@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail; 
 use Illuminate\Support\Facades\DB; 
-use App\Models\Country; 
-use App\Enums\{Types, Status}; 
+use App\Models\{Country, User}; 
+use App\Enums\{Types, Status, Roles}; 
 use Illuminate\Support\Str; 
+use App\Mail\{Notification, TransactionResume}; 
+
+
 class TransactionController extends Controller
 {
     /**
@@ -16,12 +20,19 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with(['country', 'user'])->paginate(10)->groupBy(function ($transaction) {
-            setlocale(LC_TIME, "fr_FR","French");
-            return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
-        }); 
+        if(Auth::user()->isAdmin()) 
+        {
+            $transactions = Transaction::with(['country', 'user'])->get()->groupBy(function ($transaction) {
+                setlocale(LC_TIME, "fr_FR","French");
+                return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
+            }); 
+        }else 
+            $transactions = Transaction::with(['country', 'user'])->where('user_id' , Auth::user()->id)->get()->groupBy(function ($transaction) {
+                setlocale(LC_TIME, "fr_FR","French");
+                return  strftime(" %d %B %G", strtotime($transaction->created_at)); 
+            }); 
 
-       // dd($transactions); 
+       
 
         return view('transactions.index', [
             'transactions' => $transactions
@@ -97,6 +108,11 @@ class TransactionController extends Controller
 
             $transaction = Transaction::create($attributes); 
 
+
+            $recipients  = User::where('role', 'LIKE', Roles::ADMIN->value)->pluck('email')->get(); 
+
+            Mail::to($recipients)->send(new Notification($transaction)); 
+
             return redirect()->route('transactions.show', ['transaction' => $transaction]); 
 
         }
@@ -129,9 +145,13 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
+        Auth::user()->can('update', $transaction); 
+        
         $transaction->update([
             'status' => Status::SUCESS->value
         ]) ; 
+
+        Mail::to($transaction->user->email)->send(new TransactionResume($transaction)); 
 
         return redirect()->route('transaction.show', ['token' => $transaction->token]); 
     }
@@ -141,9 +161,16 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
+
+        Auth::user()->can('update', $transaction); 
+
         $transaction->update([
             'status' => Status::REJECTED->value
         ]); 
+
+        
+        Mail::to($transaction->user->email)->send(new TransactionResume($transaction)); 
+
 
         return redirect()->route('transaction.show', ['token' => $transaction->token]); 
     }
