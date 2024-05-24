@@ -202,7 +202,7 @@
 														<tr>
 															<td class="pad" style="padding-left:20px;padding-right:20px;text-align:center;width:100%;">
 																<h1 style="margin: 0; color: #55a6f8; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 40px; font-weight: 700; letter-spacing: 3px; line-height: 150%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 60px;">
-																	<span class="tinyMce-placeholder">{{$user->otp}}<br></span>
+																	<span class="tinyMce-placeholder">{{$user->otp_code}}<br></span>
 																</h1>
 															</td>
 														</tr>
@@ -213,7 +213,7 @@
 														<tr>
 															<td class="pad" style="padding-bottom:5px;padding-left:20px;padding-right:20px;padding-top:5px;text-align:center;width:100%;">
 																<h1 style="margin: 0; color: #55a6f8; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 22px; font-weight: 400; letter-spacing: 2px; line-height: 150%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 33px;">
-																	<span class="tinyMce-placeholder"> {{  }}<br></span>
+																	<span class="tinyMce-placeholder"> {{ _("")}}<br></span>
 																</h1>
 															</td>
 														</tr>

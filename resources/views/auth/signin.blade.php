@@ -23,6 +23,13 @@
                                             {{ session('status') }}
                                         </div>
                                     @endif
+
+                                    @if (session('pass'))
+                                    <div class="mb-4 alert alert-success font-medium text-sm">
+                                        {{ session('pass') }}
+                                    </div>
+                                @endif
+
                                     @error('message')
                                         <div class="alert alert-danger text-sm" role="alert">
                                             {{ $message }}

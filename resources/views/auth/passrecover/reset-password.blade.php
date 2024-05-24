@@ -14,18 +14,19 @@
                         <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-left bg-transparent">
-                                    <h3 class="font-weight-black text-dark display-6 text-center">Reset Password</h3>
+                                    <h3 class="font-weight-black text-dark display-6 text-center"> Modifier le mot de passe </h3>
+                                    <span class="text-mutted text-center mt-4 mb-2"> Entrez votre nouveau mot de passe, la longueur de votre mot de passe est de 6 caaractères minimum </span>
                                 </div>
                                 <div class="card-body text-center">
                                     @if ($errors->any())
                                         <div>
                                             <div>Quelque chose s'est mal passé !</div>
 
-                                            <ul>
+                                            <div class=" alert alert-danger text-sm " role="alert">
                                                 @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
+                                                    <span>{{ $error }}</span>
                                                 @endforeach
-                                            </ul>
+                                            </div>
                                         </div>
                                     @endif
                                     @if (session('status'))
@@ -33,14 +34,9 @@
                                             {{ session('status') }}
                                         </div>
                                     @endif
-                                    <form role="form" action="/reset-password" method="POST">
+                                    <form role="form" action="{{route('reset.store')}}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-                                        <div class="mb-3">
-                                            <input type="email" class="form-control" placeholder="Email"
-                                                aria-label="Email" id="email" name="email"
-                                                value="{{ old('email', $request->email) }}" required autofocus>
-                                        </div>
+                                        <input type="hidden" name="uid" value="{{$uid}}">
                                         <div class="mb-3">
                                             <input type="password" id="password" class="form-control" name="password"
                                                 placeholder="Nouveau Mot de passe " aria-label="Password" id="password"

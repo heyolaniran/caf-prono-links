@@ -76,16 +76,28 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'create'])
     ->middleware('guest')
     ->name('password.request');
 
-Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])
+Route::post('/forgot-password', [ForgotPasswordController::class, 'otp_mail'])
     ->middleware('guest')
     ->name('password.email');
 
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create'])
+Route::get('/otp/{uid}', [ForgotPasswordController::class , 'otp_view'])
+    ->where(['uid' => '[a-zA-Z0-9]+'])
+    ->middleware('guest')
+    ->name('web.otp'); 
+
+Route::post('/otp', [ForgotPasswordController::class , 'otp_verify'])
+    ->middleware('guest')
+    ->name('otp.verify'); 
+
+
+Route::get('/reset-password/{uid}', [ResetPasswordController::class, 'create'])
+    ->where(['uid' => '[a-zA-Z0-9]+'])
     ->middleware('guest')
     ->name('password.reset');
 
 Route::post('/reset-password', [ResetPasswordController::class, 'store'])
-    ->middleware('guest');
+    ->middleware('guest')
+    ->name('reset.store');
 
 Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/login/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
