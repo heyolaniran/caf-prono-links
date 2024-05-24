@@ -8,14 +8,14 @@
         </div>
     </div>
 
-    <main class="main-content mt-0">
+    <main class="main-content">
         <section>
-            <div class="page-header min-vh-100 min-h-screen">
+            <div class=" page-header min-vh-100 ">
                 <div class="flex place-items-center">
-                    <div class="max-w-md mx-auto text-center bg-white px-4 px-md-8 py-md-10 rounded-xl shadow">
-                        <header class="mb-8">
-                            <h1 class="text-xl font-bold mb-1">Mobile Phone Verification</h1>
-                            <p class="text-[15px] text-slate-500">Enter the 4-digit verification code that was sent to your phone number.</p>
+                    <div class="max-w-md mx-auto text-center bg-white px-4 px-md-8 py-md-10 rounded-xl">
+                        <header class="mb-8  align-items-center align-middle">
+                            <h1 class="text-xl font-bold mb-1">Entrez le code </h1>
+                            <p class="text-[15px] text-slate-500">Nous vous avons envoyé un code de vérification à votre adresse email </p>
                         </header>
                         <form id="otp-form">
                             <div class="flex items-center justify-center gap-3">
@@ -42,7 +42,7 @@
                                     Account</button>
                             </div>
                         </form>
-                        <div class="text-sm text-slate-500 mt-4">Didn't receive code? <a class="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Resend</a></div>
+                        <div class="text-sm text-slate-500 mt-4">Vous n'avez pas reçu le code ? <a class="font-medium text-indigo-500 hover:text-indigo-600" href="#0">Renvoyer le code </a></div>
                     </div>
                     <script>
                         document.addEventListener('DOMContentLoaded', () => {

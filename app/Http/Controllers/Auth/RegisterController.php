@@ -65,13 +65,13 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return view('auth.otp', [
+       /* return view('auth.otp', [
             'user' => $user
-        ]); 
+        ]); */
 
-       // Auth::login($user);
+        Auth::login($user);
 
 
-       // return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME);
     }
 }

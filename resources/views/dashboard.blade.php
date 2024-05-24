@@ -125,14 +125,14 @@
                     </div>
                     <div class=" row d-flex justify-content-center align-middle text-center">
                         <div class="col-md-6">
-                            <a href="{{route('transactions.create')}}" class="btn text-info rounded-pill text-sm btn-outline-info"> <i class="fab fa-dollar-sign text-sm text-info"></i> Effectuer un retrait </a>
+                            <a href="{{route('transactions.create')}}" class="btn text-info rounded-pill text-sm btn-outline-info "> <i class="fab fa-dollar-sign text-sm text-info"></i> Effectuer un retrait </a>
                         </div>
                     </div>
                 </div>
             </div>
             
             
-            @if(Auth::user()->isAdmin())
+            @if(auth()->user()->isAdmin())
                 <div class="row my-4">
                     <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
                         <div class="card shadow-xs border h-100">
