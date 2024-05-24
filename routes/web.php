@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\{SocialController, TransactionController}; 
+use App\Http\Controllers\{SocialController, TransactionController, GoogleLoginController}; 
 
 /*
 |--------------------------------------------------------------------------
@@ -63,9 +63,7 @@ Route::get('/sign-in', [LoginController::class, 'create'])
     ->middleware('guest')
     ->name('sign-in');
 
-Route::get('/otp', function () {
-    return view('auth.otp'); 
-}); 
+
 
 Route::post('/sign-in', [LoginController::class, 'store'])
     ->middleware('guest');
@@ -88,6 +86,15 @@ Route::get('/reset-password/{token}', [ResetPasswordController::class, 'create']
 
 Route::post('/reset-password', [ResetPasswordController::class, 'store'])
     ->middleware('guest');
+
+Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/login/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
+
+
+Route::get('/otp', function () {
+    return view('auth.otp'); 
+}); 
+
 
 Route::get('/account', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 Route::put('/account/update', [ProfileController::class, 'update'])->name('users.update')->middleware('auth');
