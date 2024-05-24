@@ -59,13 +59,13 @@
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-info rounded-pill w-100 mt-4 mb-3">Se connecter <i class="fa fa-arrow-right" aria-hidden="true"></i> </button>
-                                            <button type="button" class="btn btn-white btn-icon w-100 mb-3">
+                                            <a href="{{route('auth.google')}}" class="btn btn-white btn-icon w-100 mb-3">
                                                 <span class="btn-inner--icon me-1">
                                                     <img class="w-5" src="../assets/img/logos/google-logo.svg"
                                                         alt="google-logo" />
                                                 </span>
                                                 <span class="btn-inner--text">Se connecter avec Google</span>
-                                            </button>
+                                            </a>
                                         </div>
                                     </form>
                                 </div>
