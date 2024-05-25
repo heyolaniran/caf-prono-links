@@ -21,12 +21,17 @@ use App\Http\Controllers\{SocialController, TransactionController, GoogleLoginCo
 */
 
 Route::get('/', function () {
-    return redirect('/dashboard');
-})->middleware('auth');
+    return redirect('/home');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
+
+
+Route::get('/home', function() {
+    return view('welcome'); 
+}); 
 
 Route::get('/tables', function () {
     return view('tables');
