@@ -21444,6 +21444,8 @@ fieldset:disabled .btn {
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
+  justify-items: center;
   background-size: cover;
   background-position: 50%;
 }

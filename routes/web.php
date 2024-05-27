@@ -140,3 +140,8 @@ Route::middleware(['auth'])->prefix('transactions')->group(function () {
 }); 
 
 Route::get('/deposit', [TransactionController::class, 'deposit'])->middleware('auth')->name('deposit'); 
+
+Route::middleware(['auth', 'admin'])->prefix('providers')->group(function() {
+
+    Route::get('/', [ProviderController::class , 'index'])->name('providers'); 
+}); 
