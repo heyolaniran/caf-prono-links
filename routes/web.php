@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\{SocialController, TransactionController, GoogleLoginController}; 
+use App\Http\Controllers\{SocialController, TransactionController, GoogleLoginController, ProviderController}; 
 
 /*
 |--------------------------------------------------------------------------
@@ -144,4 +144,11 @@ Route::get('/deposit', [TransactionController::class, 'deposit'])->middleware('a
 Route::middleware(['auth', 'admin'])->prefix('providers')->group(function() {
 
     Route::get('/', [ProviderController::class , 'index'])->name('providers'); 
+    Route::get('/edit/{provider}', [ProviderController::class , 'edit'])->name('provider.edit'); 
+    Route::get('create', [ProviderController::class, 'create'])->name('provider.create'); 
+    Route::post('/store', [ProviderController::class, 'store'])->name('provider.store'); 
+    Route::put('/update/{provider}', [ProviderController::class , 'update'])->name('provider.update'); 
+
+    Route::put('/status/{provider}', [ProviderController::class, 'availability'])->name('provider.availability'); 
+
 }); 
