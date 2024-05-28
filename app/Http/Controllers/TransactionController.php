@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail; 
 use Illuminate\Support\Facades\DB; 
-use App\Models\{Country, User}; 
+use App\Models\{Country, User, Provider}; 
 use App\Enums\{Types, Status, Roles}; 
 use Illuminate\Support\Str; 
 use App\Mail\{Notification, TransactionResume}; 
@@ -45,15 +45,18 @@ class TransactionController extends Controller
     public function create()
     {
         $countries = Country::where('enabled', true)->get() ; 
-
+        
         return view('transactions.create', [
-            'countries' => $countries
+            'countries' => $countries, 
+           
         ]); 
     }
 
     public function deposit() {
-        
-        return view('transactions.deposits.create'); 
+        $provider = Provider::where('enabled', true)->first();
+        return view('transactions.deposits.create', [
+            'provider' => $provider
+        ]); 
     }
 
     /**

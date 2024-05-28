@@ -26,40 +26,47 @@
         </div>
 
         <div class="row">
-            <div class="col-md-8 d-block align-items-center justify-content-center text-center">
+            <div class=" d-block  page-header align-middle justify-content-center text-center">
                 <div class="mt-4 container ">
                     @foreach($providers as $provider)
                         <div class="card rounded-lg shadow-md shadow-blur mb-2 mt-2">
                         
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
+                                    <div class="d-flex row">
+                                        <div class="col-4">
                                             <a href="{{route('provider.edit',['provider' => $provider])}}">{{ucfirst($provider->account)}}</a> 
                                         </div>
                                         
-                                        @if($provider->enabled)
-                                            <div class="badge badge-success badge-sm text-center px-4 text-xs ">
-                                                Actif
-                                            </div>
-                                        @else 
-                                        
-                                            <div class="badge badge-danger badge-sm text-center px-4 text-xs ">
-                                                Désactivé
-                                            </div>
-            
-                                        
-                                        @endif
-
-                                        <div>
-                                            <form action="{{route('provider.availability', ['provider' =>$provider])}}" method="post">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-outline-danger text-danger"> <i class="fas fa-eye-slash fa-sm  "></i>  Désactiver </button>
-                                            </form>
+                                        <div class="col-4 ">
+                                             @if($provider->enabled)
+                                                <span class="badge badge-success badge-sm text-center px-4 text-xs ">
+                                                    Actif
+                                                </span>
+                                            @else 
+                                            
+                                                <span class="badge badge-danger badge-sm text-center px-4 text-xs ">
+                                                    Désactivé
+                                                </span>
+                                            
+                                            @endif
                                         </div>
 
+                                        
                                     
                                     </div>
+
+                                    <div class=" d-flex justify-content-center  text-center  mt-4 align-middle">
+                                        <form action="{{route('provider.availability', ['provider' =>$provider])}}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            @if($provider->enabled)
+                                            <button type="submit" class="btn btn-outline-danger btn-sm text-danger"> <i class="fas fa-eye-slash fa-sm  "></i>  Désactiver </button>
+                                            @else 
+                                            <button type="submit" class="btn btn-outline-info btn-sm text-info"> <i class="fas fa-eye fa-sm  "></i>  Activer </button>
+                                            @endif
+                                        </form>
+                                    </div>
+
                                 </div>
                         </div>
                     @endforeach

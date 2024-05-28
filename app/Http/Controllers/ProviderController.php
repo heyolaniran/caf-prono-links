@@ -98,13 +98,13 @@ class ProviderController extends Controller
         //
     }
 
-    public function status(Provider $provider) {
+    public function availability(Provider $provider) {
 
         $provider->update([
             'enabled' => !$provider->enabled
         ]); 
 
 
-        return redirect()->route('providers.index'); 
+        return redirect()->route('providers'); 
     }
 }
