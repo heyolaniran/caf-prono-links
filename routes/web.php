@@ -33,6 +33,10 @@ Route::get('/home', function() {
     return view('welcome'); 
 }); 
 
+Route::get('/offline', function () {
+    return view('offline');
+});
+
 Route::get('/tables', function () {
     return view('tables');
 })->name('tables')->middleware('auth');

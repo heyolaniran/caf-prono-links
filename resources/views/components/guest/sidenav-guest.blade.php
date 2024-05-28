@@ -38,8 +38,32 @@
                         Se Connecter 
                     </a>
                 </li>
+                
             </ul>
+
+            <div class="nav-item d-flex justify-content-end">
+                <button class="btn btn-info rounded-pill btn-sm" id="install">Installer</button>
+            </div>
            
         </div>
     </div>
 </nav>
+
+
+<script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        deferredPrompt = e;
+    });
+
+    const installApp = document.getElementById('install');
+    installApp.addEventListener('click', async () => {
+        if (deferredPrompt !== null) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                deferredPrompt = null;
+            }
+        }
+    });
+</script>
