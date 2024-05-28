@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -60,7 +59,6 @@ class RegisterController extends Controller
             'phone' => $request->phone, 
             'bet_account' => $request->bet_account,
             'country_id' => $request->country_id,
-            'otp_code' => rand(1211 , 9999), 
             'uid' => substr(uniqid(Str::random(8)), 0, 10), 
             'password' => Hash::make($request->password),
         ]);

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provider;
+use App\Models\{Provider, Country};
 use Illuminate\Http\Request;
 
 class ProviderController extends Controller
@@ -12,7 +12,11 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        $providers = Provider::with('country')->orderBy('id', 'DESC')->paginate(10) ; 
+
+        return view('providers.index', [
+            'providers' => $providers
+        ]); 
     }
 
     /**
@@ -20,7 +24,10 @@ class ProviderController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::where('enabled', true)->get(); 
+        return view('providers.create', [
+            'countries' => $countries
+        ]); 
     }
 
     /**
@@ -28,7 +35,20 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|unique:providers', 
+            'account' => 'required|min:3|unique:providers', 
+            'ussd' => 'required:min:4'
+        ], [
+            'name.required' => 'Veuiller nommer le moyen de paiement', 
+            'account.required' => 'Attribuez un code au moyen de paiement', 
+            'ussd.required' => 'Code USSD COMPLET'
+        ]) ; 
+
+
+        $provider = Provider::create($request->all()); 
+
+        return redirect()->route('providers') ; 
     }
 
     /**
@@ -44,7 +64,9 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider)
     {
-        //
+        return view('providers.edit', [
+            'provider' => $provider
+        ]) ; 
     }
 
     /**
@@ -52,7 +74,20 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|unique:providers', 
+            'account' => 'required|min:3|unique:providers', 
+            'ussd' => 'required:min:4'
+        ], [
+            'name.required' => 'Veuiller nommer le moyen de paiement', 
+            'account.required' => 'Attribuez un code au moyen de paiement', 
+            'ussd.required' => 'Code USSD COMPLET'
+        ]) ;
+
+
+        $provider->update($request->all()); 
+
+        return redirect()->route('providers.index'); 
     }
 
     /**
@@ -61,5 +96,15 @@ class ProviderController extends Controller
     public function destroy(Provider $provider)
     {
         //
+    }
+
+    public function availability(Provider $provider) {
+
+        $provider->update([
+            'enabled' => !$provider->enabled
+        ]); 
+
+
+        return redirect()->route('providers'); 
     }
 }

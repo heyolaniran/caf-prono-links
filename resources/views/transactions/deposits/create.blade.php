@@ -32,12 +32,12 @@
                 </div>
 
                 <div class="text-center w-12 mt-6">
-                    <span class="bg-dark text-light text-center px-4 py-2 text-md"> Payez au *880*41*00000*Montant# </span>
+                    <p class="bg-dark text-light text-center px-4 py-2 text-md"> Payez au {{$provider->ussd}} <span class="font-weight-bold" id="value">Montant</span> #</p>
                     <hr>
                     <span class="text-center"> ou </span>
                     <hr>
                     <div class="text-center">
-                        <a href="tel:*880*41*5000*00000#" class="btn btn-info rounded-pill">Payer ici </a>
+                        <a href="" id="ussd" class="btn btn-info rounded-pill">Payer ici </a>
                     </div>
                 </div>
 
@@ -61,5 +61,17 @@
             </form>
 
         </div>
+
+
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+           $("#amount").on('change', function () {
+             var value = 'tel:'+"{{$provider->ussd}}"+$('#amount').val()+"#"
+             $('#value').html($("#amount").val());
+             $("#ussd").attr('href', value ); 
+           });
+        });
+    </script>
 </x-app-layout>
